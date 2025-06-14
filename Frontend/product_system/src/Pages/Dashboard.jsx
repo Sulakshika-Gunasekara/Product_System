@@ -144,16 +144,24 @@ function Dashboard() {
 
   return (
     <>
-      <Container className="mt-5 d-flex justify-content-center">
-        <Card className="shadow-lg p-4 w-100" style={{ maxWidth: "900px" }}>
+      <Container
+        className=" d-flex justify-content-center"
+        style={{ minHeight: "100vh", padding: "0px", width: "100vw" }}>
+        <Card
+          className="shadow-lg p-4 w-100 justify-content-center "
+          style={{ maxWidth: "1000px" }}>
           <Card.Body>
-            <h2 className="text-center text-primary mb-4">Products List</h2>
-            <div className="mt-3 d-flex justify-content-end">
-              <Button variant="secondary" onClick={() => navigate("/")}>
+            <h2 className="text-center text-primary mb-2">Products List</h2>
+            <div className="mt-3 d-flex justify-content">
+              <Button variant="secondary my-4 " onClick={() => navigate("/")}>
                 Go to Login
               </Button>
             </div>
-            <Table bordered hover responsive className="text-center">
+            <Table
+              bordered
+              hover
+              responsive
+              className="mt-3 shadow table table-striped">
               <thead className="bg-primary text-white">
                 <tr>
                   <th>Name</th>

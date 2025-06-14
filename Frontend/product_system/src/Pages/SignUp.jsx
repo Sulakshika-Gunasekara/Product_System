@@ -45,11 +45,17 @@ function Signup() {
   };
 
   return (
-    <div className="container d-flex align-items-center justify-content-center min-vh-100">
+    <div
+      className="d-flex flex-column align-items-center justify-content-center h-100 "
+      style={{ minHeight: "100vh", padding: "0px", width: "100vw" }}>
       <div
         className="card p-4 shadow"
         style={{ maxWidth: "400px", width: "100%" }}>
-        <h2 className="mb-4 text-center">Create an account</h2>
+        <h2 className="mb-4 text-center fw-bold" style={{ color: "#0d6efd" }}>
+          Product Store
+        </h2>
+        <h3 className="mb-4 text-center">Sign Up</h3>
+
         <form onSubmit={handleSubmit}>
           {/* Full Name */}
           <div className="mb-3">
@@ -126,7 +132,7 @@ function Signup() {
         {/* Link to Login */}
         <p className="mt-3 text-center text-muted">
           Already have an account?{" "}
-          <a href="/" className="text-primary">
+          <a href="/" className="text-primary text-decoration-none">
             Login here
           </a>
         </p>
