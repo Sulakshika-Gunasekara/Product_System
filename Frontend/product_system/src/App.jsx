@@ -11,7 +11,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
-        {/* Private route for the dashboard */}
+
         <Route
           path="/dashboard"
           element={<PrivateRoute Component={Dashboard} />}

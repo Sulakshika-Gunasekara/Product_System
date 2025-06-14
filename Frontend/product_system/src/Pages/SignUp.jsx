@@ -7,6 +7,7 @@ function Signup() {
     name: "",
     email: "",
     password: "",
+    confirmPassword: "",
   });
   const [error, setError] = useState(null);
   const navigate = useNavigate();
@@ -21,78 +22,111 @@ function Signup() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    // Check if passwords match
+    if (formData.password !== formData.confirmPassword) {
+      setError("Passwords do not match.");
+      return;
+    }
+
     try {
       const response = await axios.post(
         "http://localhost:5000/api/users/register",
-        formData
+        {
+          name: formData.name,
+          email: formData.email,
+          password: formData.password,
+        }
       );
       console.log(response.data);
-      navigate("/login"); // Redirect to login page after successful signup
+      navigate("/login");
     } catch (err) {
       setError("Signup failed. Please try again.");
     }
   };
 
   return (
-    <div className="flex justify-center items-center h-screen bg-gray-100">
-      <div className="bg-white p-8 rounded shadow-md w-80">
-        <h2 className="text-2xl mb-4 text-center">Sign Up</h2>
-        {error && <p className="text-red-500 text-center">{error}</p>}
+    <div className="container d-flex align-items-center justify-content-center min-vh-100">
+      <div
+        className="card p-4 shadow"
+        style={{ maxWidth: "400px", width: "100%" }}>
+        <h2 className="mb-4 text-center">Create an account</h2>
         <form onSubmit={handleSubmit}>
-          <div className="mb-4">
-            <label htmlFor="name" className="block text-sm font-medium">
-              Name
+          {/* Full Name */}
+          <div className="mb-3">
+            <label htmlFor="name" className="form-label">
+              Full Name
             </label>
             <input
-              type="text"
               id="name"
               name="name"
-              className="w-full p-2 border border-gray-300 rounded"
+              type="text"
+              required
+              className="form-control"
+              placeholder="Full Name"
               value={formData.name}
               onChange={handleChange}
-              required
             />
           </div>
-
-          <div className="mb-4">
-            <label htmlFor="email" className="block text-sm font-medium">
-              Email
+          {/* Email */}
+          <div className="mb-3">
+            <label htmlFor="email" className="form-label">
+              Email address
             </label>
             <input
-              type="email"
               id="email"
               name="email"
-              className="w-full p-2 border border-gray-300 rounded"
+              type="email"
+              autoComplete="email"
+              required
+              className="form-control"
+              placeholder="Email address"
               value={formData.email}
               onChange={handleChange}
-              required
             />
           </div>
-
-          <div className="mb-4">
-            <label htmlFor="password" className="block text-sm font-medium">
+          {/* Password */}
+          <div className="mb-3">
+            <label htmlFor="password" className="form-label">
               Password
             </label>
             <input
-              type="password"
               id="password"
               name="password"
-              className="w-full p-2 border border-gray-300 rounded"
+              type="password"
+              required
+              className="form-control"
+              placeholder="Password"
               value={formData.password}
               onChange={handleChange}
-              required
             />
           </div>
-
-          <button
-            type="submit"
-            className="w-full py-2 bg-blue-500 text-white rounded">
+          {/* Confirm Password */}
+          <div className="mb-3">
+            <label htmlFor="confirmPassword" className="form-label">
+              Confirm Password
+            </label>
+            <input
+              id="confirmPassword"
+              name="confirmPassword"
+              type="password"
+              required
+              className="form-control"
+              placeholder="Confirm Password"
+              value={formData.confirmPassword}
+              onChange={handleChange}
+            />
+          </div>
+          {/* Display error message */}
+          {error && <p className="text-danger text-center">{error}</p>}
+          {/* Submit Button */}
+          <button type="submit" className="btn btn-primary w-100">
             Sign Up
           </button>
         </form>
-        <p className="text-center mt-4">
+        {/* Link to Login */}
+        <p className="mt-3 text-center text-muted">
           Already have an account?{" "}
-          <a href="/" className="text-blue-500">
+          <a href="/" className="text-primary">
             Login here
           </a>
         </p>
