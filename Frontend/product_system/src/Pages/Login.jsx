@@ -97,7 +97,7 @@ function Login() {
           <div className="text-center mt-3">
             <p className="mb-0">Don't have an account?</p>
             <span
-              className="text-decoration-none"
+              className="text-decoration-none text-primary "
               onClick={() => navigate("/signup")}>
               Register here
             </span>
