@@ -45,7 +45,9 @@ function Signup() {
   };
 
   return (
-    <div className="container d-flex align-items-center justify-content-center min-vh-100">
+    <div
+      className="d-flex flex-column align-items-center justify-content-center h-100 "
+      style={{ minHeight: "100vh", padding: "0px", width: "100vw" }}>
       <div
         className="card p-4 shadow"
         style={{ maxWidth: "400px", width: "100%" }}>
