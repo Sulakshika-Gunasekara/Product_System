@@ -1,6 +1,8 @@
 // controllers/userController.js
 const User = require('../models/User');
 const jwt = require('jsonwebtoken');
+const bcrypt = require('bcryptjs');
+
 require('dotenv').config();
 
 // User Registration
@@ -14,10 +16,12 @@ const registerUser = async (req, res) => {
       return res.status(400).json({ message: 'User already exists' });
     }
 
+    
     // Create new user
     const user = new User({
       email,
       password,
+      
     });
 
     await user.save();
@@ -34,7 +38,6 @@ const registerUser = async (req, res) => {
   }
 };
 
-// User Login
 const loginUser = async (req, res) => {
   const { email, password } = req.body;
 

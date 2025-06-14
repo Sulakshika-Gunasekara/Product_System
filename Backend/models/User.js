@@ -12,6 +12,7 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  //  googleId: { type: String, unique: true, sparse: true },
 });
 
 // Hash password before saving
@@ -25,4 +26,4 @@ userSchema.methods.matchPassword = async function (password) {
   return await bcrypt.compare(password, this.password);
 };
 
-module.exports = mongoose.model('User', userSchema);
+module.exports = mongoose.model('ProductUser', userSchema);
